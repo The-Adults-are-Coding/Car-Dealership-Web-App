@@ -1,12 +1,18 @@
+// src/App.js
 import React from "react";
-import Login from "./pages/Login/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/*" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
