@@ -1,10 +1,13 @@
 // src/pages/Contracts/Contracts.jsx
-import React from "react";
+import React, { useState } from "react";
+import AddContract from "./AddContract";
 import Table from "../../components/Table/Table";
-import { mockContracts } from "../../data/mockData";
+import { mockCars, mockCustomers, mockContracts } from "../../data/mockData";
 import "./Contracts.css";
 
 const Contracts = () => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [contractsData, setContractsData] = useState(mockContracts);
   const columns = [
     { key: "contractId", label: "Contract ID" },
     { key: "contractNumber", label: "Contract #" },
@@ -111,17 +114,34 @@ const Contracts = () => {
     },
   ];
 
-  const handleAddContract = () => {
-    alert("Add new contract - Will open modal/form");
+  const handleAddContract = (newContract) => {
+    const newId = Math.max(...contractsData.map((c) => c.id)) + 1;
+    const contractWithId = {
+      ...newContract,
+      id: newId,
+      contractId: 5000 + newId,
+    };
+
+    setContractsData([...contractsData, contractWithId]);
+    setIsAddModalOpen(false);
+    alert("Contract added successfully!");
   };
 
   return (
     <div className="page-container">
       <Table
-        data={mockContracts}
+        data={contractsData}
         columns={columns}
-        onAdd={handleAddContract}
+        onAdd={() => setIsAddModalOpen(true)}
         title="Contracts Management"
+      />
+
+      <AddContract
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSave={handleAddContract}
+        cars={mockCars}
+        customers={mockCustomers}
       />
     </div>
   );
