@@ -1,3 +1,4 @@
+/* src/components/InputField/InputField.css */
 .input-field {
   position: relative;
   margin-bottom: 20px;
@@ -9,24 +10,35 @@
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: #666;
+  color: #999;
+  font-size: 18px;
 }
 
 .input {
   width: 100%;
   padding: 15px 20px 15px 50px;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  font-size: 16px;
+  border: 2px solid #eaeaea;
+  border-radius: 12px;
+  font-size: 15px;
   transition: all 0.3s ease;
   outline: none;
+  background: #fafafa;
 }
 
 .input:focus {
-  border-color: #ff4d4d;
-  box-shadow: 0 0 10px rgba(255, 77, 77, 0.1);
+  border-color: #4169e1;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(65, 105, 225, 0.1);
 }
 
 .input::placeholder {
-  color: #999;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.error-message {
+  color: #ff4d4f;
+  font-size: 13px;
+  margin: -10px 0 15px 10px;
+  display: block;
 }
